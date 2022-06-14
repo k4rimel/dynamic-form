@@ -15,7 +15,10 @@ export class DynamicFormControlComponent implements OnInit {
   }
 
   get label() {
-    return this.controlConfig.control.get('label')?.value as string;
+    // Converting to a simple key/value type for type errors
+    // FIXME: move label to a config object ?
+    const ctrlObj = this.controlConfig.control as { [k: string]: any };
+    return ctrlObj['label'] as string;
   }
 
   get ctrlName() {
@@ -23,7 +26,6 @@ export class DynamicFormControlComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.controlConfig);
   }
 
 }

@@ -3,7 +3,7 @@
     <h3>{{label}}</h3>
   </ng-container>
   <ng-template #regularLabel style="background-color: red">
-    <label [for]="ctrlName">{{label}}</label>
+    <label [for]="ctrlName">{{label}}</label><br>
   </ng-template>
   <ng-container *ngIf="controlConfig.isFormGroup; else control">
     <app-dynamic-form-control *ngFor="let childrenConf of controlConfig.childrenConfigs"
@@ -19,7 +19,6 @@
         <option *ngFor="let opt of controlConfig.options" [value]="opt.key">{{opt.value}}</option>
       </select>
     </ng-container>
-    {{controlConfig.control.valid}}
     <div class="errorMessage" *ngIf="!controlConfig.control.valid">{{controlConfig.label}} is required</div>
   </ng-template>
-</div>
+</div><br>

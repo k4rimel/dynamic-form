@@ -4,18 +4,34 @@
     <h3>Label mapping config</h3>
     <pre>{{ mappingsJSON() }}</pre>
   </div>
+  <div id="class-container" class="pad-10">
+    <h3>Class</h3>
+    <pre>
+      class User {{ "{" }}
+        public name?: string;
+        public age?: number;
+        public address?: {{ "{" }}
+          street?: string
+          state?: string
+          country?: string
+        };
+      }
+    </pre>
+  </div>
   <div id="model-container" class="pad-10">
     <h3>Model data</h3>
     <pre>{{ modelJSON() }}</pre>
   </div>
   <div id="form-container" class="pad-10">
-    <h3>Generated form</h3>
+    <h2>Generated form</h2>
+
     <app-dynamic-form
       [labelMappings]="mappings"
       [model]="model"
       (submitted)="onSubmit($event)"
     >
     </app-dynamic-form>
+
   </div>
 </div>
 

@@ -4,7 +4,11 @@ import { FormGroup } from '@angular/forms';
 class User {
   public name?: string;
   public age?: number;
-  public address?: any;
+  public address?: {
+    street?: string
+    state?: string
+    country?: string
+  };
 }
 
 @Component({
