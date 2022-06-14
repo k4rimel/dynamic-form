@@ -1,0 +1,6 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <app-dynamic-form-control *ngFor="let config of configs" [form]="form" [controlConfig]="config">
+  </app-dynamic-form-control>
+</form>
+<button (click)="onSubmit()">Valider</button>
+

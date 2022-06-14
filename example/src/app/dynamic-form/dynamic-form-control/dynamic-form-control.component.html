@@ -1,0 +1,25 @@
+<div [formGroup]="controlConfig.parentFormGroup">
+  <ng-container #subFormTitle *ngIf="controlConfig.isFormGroup; else regularLabel">
+    <h3>{{label}}</h3>
+  </ng-container>
+  <ng-template #regularLabel style="background-color: red">
+    <label [for]="ctrlName">{{label}}</label>
+  </ng-template>
+  <ng-container *ngIf="controlConfig.isFormGroup; else control">
+    <app-dynamic-form-control *ngFor="let childrenConf of controlConfig.childrenConfigs"
+                              [form]="childrenConf.parentFormGroup"
+                              [controlConfig]="childrenConf"></app-dynamic-form-control>
+  </ng-container>
+  <ng-template #control>
+    <ng-container [ngSwitch]="controlConfig.inputType">
+      <input *ngSwitchCase="'text'" [formControlName]="controlConfig.controlName"
+             [id]="controlConfig.controlName" [type]="controlConfig.inputType"/>
+      <select *ngSwitchCase="'dropdown'" [id]="controlConfig.controlName"
+              [formControlName]="controlConfig.controlName">
+        <option *ngFor="let opt of controlConfig.options" [value]="opt.key">{{opt.value}}</option>
+      </select>
+    </ng-container>
+    {{controlConfig.control.valid}}
+    <div class="errorMessage" *ngIf="!controlConfig.control.valid">{{controlConfig.label}} is required</div>
+  </ng-template>
+</div>
